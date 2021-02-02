@@ -1,0 +1,169 @@
+<div style="margin: 20px;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 main-table">
+    
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Master Header -->
+        <ng-container matColumnDef="master-header">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="4" class="table-header-color"> 
+            <span fxFlexFill>{{page}}</span> <span *ngIf="qRes.id">:&nbsp;{{qRes.id}}</span>
+            <div>
+              <span class="quotation-id">Quotation Id: {{quotationId}}</span> 
+              <button mat-flat-button color="primary" (click)="sendQuotationResponse()">
+                Send
+                <mat-icon>send</mat-icon>
+              </button>
+            </div>
+          </th>
+        </ng-container>
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="productName">
+          <th mat-header-cell *matHeaderCellDef> Product Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        </ng-container>
+    
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Price per item </th>
+          <td mat-cell *matCellDef="let element"> 
+            <div class="form-group price">
+              <input type="number" class="form-control" [(ngModel)]="element.price">
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef> Total </th>
+          <td mat-cell *matCellDef="let element"> {{ (element.price * element.quantity) || 0}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="emptyCell">
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="calBlock">
+          <td mat-footer-cell *matFooterCellDef [attr.colspan]="2" [attr.rowspan]="3">
+            Calculation
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="subtotal">
+          <td mat-footer-cell *matFooterCellDef> 
+            Subtotal
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="subtotal-cal">
+          <td mat-footer-cell *matFooterCellDef> 
+            {{ getSubtotal() || 0 }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tax">
+          <td mat-footer-cell *matFooterCellDef class="first-table-cell"> 
+            Tax
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tax-input">
+          <td mat-footer-cell *matFooterCellDef> 
+            <div class="form-group price">
+              <input type="number" class="form-control" [(ngModel)]="qRes.tax">
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="all-total">
+          <td mat-footer-cell *matFooterCellDef class="first-table-cell"> 
+            Total
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="all-total-cal">
+          <td mat-footer-cell *matFooterCellDef> 
+            {{(getSubtotal() || 0) + (qRes.tax || 0)}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="payment">
+          <td mat-footer-cell *matFooterCellDef [attr.colspan]="2" [attr.rowspan]="2"> 
+            Payment Terms and Conditions
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentAdvance">
+          <td mat-footer-cell *matFooterCellDef>
+              Advance Payment
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentAdvanceInput">
+          <td mat-footer-cell *matFooterCellDef> 
+            <div class="form-group price">
+              <input type="number" class="form-control" [(ngModel)]="qRes.paymentAdvance">
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentAfterDelivery">
+          <td mat-footer-cell *matFooterCellDef class="first-table-cell">
+              After Delivery Payment
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentAfterDeliveryInput">
+          <td mat-footer-cell *matFooterCellDef> 
+            <div class="form-group price">
+              <input type="number" class="form-control" [(ngModel)]="qRes.paymentAfterDelivery">
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modeOfTransport">
+          <td mat-footer-cell *matFooterCellDef>
+              Mode of Transport
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modeOfTransportInput">
+          <td mat-footer-cell *matFooterCellDef [attr.colspan]="2"> 
+            <div class="form-group table-form-input">
+              <input class="form-control" [(ngModel)]="qRes.modeOfTransport">
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="desc">
+          <td mat-footer-cell *matFooterCellDef>
+              Description
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descInput">
+          <td mat-footer-cell *matFooterCellDef [attr.colspan]="2"> 
+            <div class="form-group table-form-input">
+              <textarea  class="form-control" [(ngModel)]="qRes.desc" rows="3"></textarea>
+            </div>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="['master-header']"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="['calBlock', 'subtotal', 'subtotal-cal']"></tr>
+        <tr mat-footer-row *matFooterRowDef="['tax', 'tax-input']"></tr>
+        <tr mat-footer-row *matFooterRowDef="['all-total', 'all-total-cal']"></tr>
+        <tr mat-footer-row *matFooterRowDef="['payment', 'paymentAdvance', 'paymentAdvanceInput']"></tr>
+        <tr mat-footer-row *matFooterRowDef="['paymentAfterDelivery', 'paymentAfterDeliveryInput']"></tr>
+        <tr mat-footer-row *matFooterRowDef="['modeOfTransport', 'emptyCell', 'modeOfTransportInput']"></tr>
+        <tr mat-footer-row *matFooterRowDef="['desc', 'emptyCell', 'descInput']"></tr>
+      </table>
+    </div>
