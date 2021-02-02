@@ -1,0 +1,57 @@
+.mat-icon {
+    font-size: 35px;
+}
+
+mat-sidenav {
+    width: 300px;
+    border-right-color: rgba(0, 0, 0, 0.08);
+}
+
+mat-sidenav-content {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.project_name {
+    font-size: 25px;
+    font-style: italic;
+}
+
+.active {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.menu-icon {
+    margin-bottom: 14px;
+}
+
+.tree-leaf-node {
+    outline: none;
+}
+
+::ng-deep {
+    mat-slide-toggle {
+        .mat-slide-toggle-bar {
+            background-color: rgba(255, 0, 0, 0.6); // your bar color here
+            .mat-slide-toggle-thumb {
+                background-color:rgba(255, 0, 0); // your slide thumb color here
+            }
+        }
+    }
+}
+
+::ng-deep {
+    mat-slide-toggle.mat-checked  {
+            .mat-slide-toggle-bar {
+                background-color: rgba(0, 128, 0, 0.6) !important; // your bar color here
+                .mat-slide-toggle-thumb {
+                    background-color: rgba(0, 128, 0) !important; // your slide thumb color here
+                }
+            }
+    }
+}
+
+::ng-deep {
+    .mat-slide-toggle.mat-disabled {
+        opacity: 1 !important;
+    }
+}

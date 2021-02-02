@@ -1,0 +1,47 @@
+<div fxLayout="column" fxFlexFill>
+  <mat-toolbar color="primary" fxFlex="0 0 64px">
+      <span class="project_name">HARDWARE TRACKING SYSTEM</span>
+      <span class="spacer"></span>
+      <span>
+        {{authService.username1}}
+        <button mat-icon-button>
+          <mat-icon [matMenuTriggerFor]="menu">account_circle</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openChangePasswordDialog()">
+              <mat-icon class="menu-icon">settings</mat-icon>
+              <span>Change Password</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon class="menu-icon">exit_to_app</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </button>
+      </span>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlex>
+    <mat-sidenav mode="side" [opened]="httpService.show">
+      <mat-tree  #tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <!-- This is the tree node template for leaf nodes -->
+        <mat-tree-node routerLink="{{node.url}}" class="tree-leaf-node" routerLinkActive="active" *matTreeNodeDef="let node" matTreeNodePadding>
+          <!-- use a disabled button to provide padding for tree leaf -->
+          <button mat-icon-button disabled></button>
+          {{node.name}}
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'Toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          {{node.name}}
+        </mat-tree-node>
+      </mat-tree>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
