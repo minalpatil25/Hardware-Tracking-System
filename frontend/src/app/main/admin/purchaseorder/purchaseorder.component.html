@@ -1,0 +1,50 @@
+<div style="margin: 20px;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 main-table">
+    
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Master Header -->
+        <ng-container matColumnDef="master-header">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="6" class="table-header-color"> 
+            <span fxFlexFill>{{page}}</span>
+            <div>
+              <button mat-flat-button color="primary" (click)="addPurchaseOrder()">
+                <mat-icon>add</mat-icon>
+                New
+              </button>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Purchase Order Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="quotationResponseId">
+            <th mat-header-cell *matHeaderCellDef> Quotation Response Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.quotationResponseId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Quotation Response Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.date | date: 'd/M/yy'}} </td>
+        </ng-container>
+
+         <!-- Control Column -->
+         <ng-container matColumnDef="control">
+          <th mat-header-cell *matHeaderCellDef class="text-align-center"> Action </th>
+          <td mat-cell *matCellDef="let element" class="text-align-center"> 
+            <button mat-icon-button class="button-padding" (click)="viewPurchaseOrder(element.id, element.quotationResponseId)">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="['master-header']"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator class="mat-elevation-z5" [length]="20" [pageSize]="30"></mat-paginator>
+</div>
