@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//Mat control
+// .mat-control-bottom {
+//     padding-bottom: 1.25em;
+// }
+
+mat-form-field {
+    width: 100%;
+}
+
+.mat-select-disabled .mat-select-value {
+    color:rgb(0, 0, 0) !important; 
+}
+
+.mat-radio-button.mat-radio-disabled .mat-radio-label-content {
+    color:rgb(0, 0, 0) !important; 
+}
+
+.mat-checkbox-disabled .mat-checkbox-label {
+    color:rgb(0, 0, 0) !important; 
+}
+
+.mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+    color:rgb(0, 0, 0) !important; 
+}
+
+.mat-form-field-appearance-fill.mat-form-field-disabled .mat-form-field-flex {
+    background-color: rgba(0,0,0,.04);
+}
+
+.table-header-color {
+    background-color: #68aabd;
+}
+
+.table-header-color > span {
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+.table-header-color > div {
+    float: right;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.text-align-center {
+    text-align: center !important;
+}
+
+.main-table {
+    width: 100%;
+}
+
+.button-padding {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.error-box {
+    padding: 10px; 
+    background-color: red; 
+    margin-bottom: 20px;
+}
+
+.small-icon-button {
+    width: 48px !important;
+    height: 48px !important;
+    line-height: 48px !important;
+ 
+    .mat-icon {
+       width: 35px !important;
+       height: 35px !important;
+       line-height: 35px !important;
+    }
+    .material-icons {
+       font-size: 35px !important;
+    }
+}
