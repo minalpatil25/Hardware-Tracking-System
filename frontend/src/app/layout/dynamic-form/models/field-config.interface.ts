@@ -1,0 +1,46 @@
+import { ValidatorFn } from '@angular/forms';
+
+export interface FieldConfig {
+  id: string;
+  name: string;
+  type: string;
+  label: string;
+  hideLabel?: boolean;
+  placeholder?: string;
+  value?: any;
+  errorMessage?: string;
+  description?: string;
+  required?: boolean;
+  hidden?: boolean;
+  disabled?: boolean;
+  validation?: ValidatorFn[];
+  callBackData?: {};
+  minLen?: number;
+  maxLen?: number;
+  minValue?: number;
+  maxValue?: number;
+  pattern?: string;
+  fontsize?: number;
+  tooltipText?: string;
+  showPassword?: boolean;
+  multiSelect?: boolean;
+  options?: any[];
+  rows?: Number;
+  messages?: {};
+  size?: string;
+  singleCol?: boolean;
+  rowIndex?: number;
+  width?: number;
+  buttonRole?: string;
+  selectedOptions?: {};
+  password?: boolean;
+  numberInput?: boolean;
+  errMsg?: any[];
+  searchList?: any[];
+  editOff?: boolean;
+  useCurrentDate?: boolean;
+  useTomorrowDate?: boolean;
+  autoGenerateId?: boolean;
+  autoGenerateIdPrefix?: string;
+  minDate?: Date;
+}

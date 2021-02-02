@@ -1,0 +1,9 @@
+<div class="mat-control-bottom" [formGroup]="group">
+  <mat-label class="label-radio-desc mat-control-value">{{config.label}}:</mat-label>
+  <mat-radio-group [formControlName]="config.name">
+    <mat-radio-button class="mat-control-value" *ngFor="let option of config.options" [value]="option.value">
+      {{option.label}}
+    </mat-radio-button>
+  </mat-radio-group>
+  <mat-error *ngIf="!isValid(group.controls[config.name], config.errMsg)">{{message}}</mat-error>
+</div>

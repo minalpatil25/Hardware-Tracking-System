@@ -1,0 +1,13 @@
+<div [formGroup]="group">
+    <mat-form-field appearance="fill">
+        <mat-label>{{ config.label }}</mat-label>
+        <input matInput
+        class="mat-control-value"
+        [formControlName]="config.name"
+        [required]="config.required"
+        [owlDateTime]="dt2">
+        <mat-icon class="mat-control-value" [owlDateTimeTrigger]="dt2" matSuffix>access_time</mat-icon>
+        <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
+        <mat-error *ngIf="!isValid(group.controls[config.name], config.errMsg)">{{message}}</mat-error>
+    </mat-form-field>
+</div>

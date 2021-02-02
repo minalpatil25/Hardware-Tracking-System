@@ -1,0 +1,11 @@
+<div [formGroup]="group" *ngIf="!config.hidden">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ config.label }}</mat-label>
+      <mat-select [formControlName]="config.name" [multiple]="config.multiSelect" [required]="config.required" (selectionChange)="onSelChange()">
+        <mat-option *ngFor="let option of config.options" [value]="option.value">
+          {{option.label}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!isValid(group.controls[config.name], config.errMsg)">{{message}}</mat-error>
+    </mat-form-field>
+</div>

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Are you sure?</h1>
+<mat-dialog-content style="height: calc(100% - 96px);">
+  <p>Are you sure you want to permanently delete these item?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Close</button>
+  <button mat-raised-button color="warn" (click)="delete()" cdkFocusInitial>Delete</button>
+</mat-dialog-actions>

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{action}} {{name?name:""}}</h1>
+<mat-dialog-content style="height: calc(100% - 96px);">
+    <app-dynamic-form #form="dynamicForm"  [config]="config"></app-dynamic-form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Close</button>
+  <button *ngIf="showSaveButton" mat-raised-button color="primary" [disabled]="!form?.form?.valid || !form?.form?.dirty" (click)="save()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

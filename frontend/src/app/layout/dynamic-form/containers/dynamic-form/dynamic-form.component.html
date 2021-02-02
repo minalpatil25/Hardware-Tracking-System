@@ -1,0 +1,76 @@
+<div class="form-padding" >
+  <app-message-box [errorMsg]="errorMessage"></app-message-box>
+  <form [formGroup]="form" autocomplete="off">
+    <div *ngFor="let control of rowList" class="field-container" fxLayout.lt-sm="column">
+      <ng-container *ngFor="let col of control; index as i; count as l; ">
+        <span [ngClass.gt-xs]="{'field-seperator': l>i+1}" [fxFlex]="col.width" fxFlex.lt-sm="100%">
+          <ng-container [ngSwitch]="col.type">
+            <app-form-input
+              *ngSwitchCase="'input'"
+              [config]="col"
+              [group]="form"
+            ></app-form-input>
+            <app-form-textarea
+              *ngSwitchCase="'textarea'"
+              [config]="col"
+              [group]="form"
+            ></app-form-textarea>
+            <app-form-select
+              *ngSwitchCase="'select'"
+              [config]="col"
+              [group]="form"
+              (selChange)="onSelChange($event)"
+            ></app-form-select>
+            <app-form-checkbox
+              *ngSwitchCase="'checkbox'"
+              [config]="col"
+              [group]="form"
+            ></app-form-checkbox>
+            <app-form-radio-button
+              *ngSwitchCase="'radio'"
+              [config]="col"
+              [group]="form"
+            ></app-form-radio-button>
+            <app-form-button
+              *ngSwitchCase="'button'"
+              [name]="col.label"
+              (click)="btnClick(col.name)"
+              [group]="form"
+            ></app-form-button>
+            <app-form-datepicker
+              *ngSwitchCase="'datepicker'"
+              [config]="col"
+              [group]="form"
+            ></app-form-datepicker>
+            <app-form-timepicker
+              *ngSwitchCase="'timepicker'"
+              [config]="col"
+              [group]="form"
+            ></app-form-timepicker>
+            <app-form-id
+              *ngSwitchCase="'id'"
+              [config]="col"
+              [group]="form"
+            ></app-form-id>
+          </ng-container>
+        </span>
+      </ng-container>
+    </div>
+    <div class="footer-field">
+      <app-form-button
+        [name]="'Close'"
+        [fill]="'outline'"
+        (click)="handleClose()"
+        [group]="form"
+        *ngIf="showCloseButton"
+      ></app-form-button>
+      <app-form-button
+        [name]="'Save'"
+        [disabled]="!form.valid || !form.dirty"
+        (click)="handleSubmit($event)"
+        [group]="form"
+        *ngIf="showSaveButton"
+      ></app-form-button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,21 @@
+.form-padding {
+  padding: 10px;
+}
+
+.field-container {
+  width: 100%;
+  display: flex;
+}
+
+.footer-field {
+  margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  padding-right: 5px;
+  text-align: right;
+}
+
+.field-seperator {
+  margin-right: 25px
+}

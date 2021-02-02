@@ -1,0 +1,13 @@
+<div [formGroup]="group">
+  <mat-form-field appearance="fill">
+      <mat-label>{{ config.label }}</mat-label>
+      <textarea matInput 
+        class="mat-control-value"
+        [placeholder]="config.placeholder"
+        [value]="config.value ? config.value : ''"
+        [formControlName]="config.name"
+        [required]="config.required">
+      </textarea>
+    <mat-error *ngIf="!isValid(group.controls[config.name], config.errMsg)">{{message}}</mat-error>
+  </mat-form-field>
+</div>

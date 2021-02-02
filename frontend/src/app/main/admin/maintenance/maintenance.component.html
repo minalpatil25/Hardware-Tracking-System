@@ -1,0 +1,87 @@
+<div style="margin: 20px;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 main-table">
+    
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Master Header -->
+        <ng-container matColumnDef="master-header">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="11" class="table-header-color"> 
+            <span fxFlexFill>{{page}}</span>
+          </th>
+        </ng-container>
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="assetName">
+          <th mat-header-cell *matHeaderCellDef> Asset Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.assetName}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="assetType">
+          <th mat-header-cell *matHeaderCellDef> Asset Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.assetType}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="productSerialNo">
+            <th mat-header-cell *matHeaderCellDef> Product Serial No </th>
+            <td mat-cell *matCellDef="let element"> {{element.productSerialNo}} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="problem">
+            <th mat-header-cell *matHeaderCellDef> Problem </th>
+            <td mat-cell *matCellDef="let element"> {{element.problem}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="newPart">
+            <th mat-header-cell *matHeaderCellDef> New Part </th>
+            <td mat-cell *matCellDef="let element"> {{element.newPart}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="serviceName">
+            <th mat-header-cell *matHeaderCellDef> Service Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="cost">
+            <th mat-header-cell *matHeaderCellDef> Cost </th>
+            <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="venue">
+            <th mat-header-cell *matHeaderCellDef> Venue </th>
+            <td mat-cell *matCellDef="let element"> {{element.venue}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="inwordDate">
+            <th mat-header-cell *matHeaderCellDef> Inword Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.inwordDate | date: 'd/M/yy'}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="outwordDate">
+            <th mat-header-cell *matHeaderCellDef> Outword Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.outwordDate | date: 'd/M/yy'}} </td>
+        </ng-container>
+
+         <!-- Name Column -->
+         <ng-container matColumnDef="isVerified">
+            <th mat-header-cell *matHeaderCellDef> Verified </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-slide-toggle [checked]="element.isVerified" (click)="verified(element.id,element.isVerified)" color="success"></mat-slide-toggle>
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="['master-header']"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator class="mat-elevation-z5" [length]="20" [pageSize]="30"></mat-paginator>
+    </div>
