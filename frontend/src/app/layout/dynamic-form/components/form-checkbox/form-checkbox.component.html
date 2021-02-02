@@ -1,0 +1,6 @@
+<div class="mat-control-bottom" [formGroup]="group">
+  <mat-checkbox class="mat-control-value" [formControlName]="config.name">
+      {{ config.label }}
+  </mat-checkbox>
+  <mat-error *ngIf="!isValid(group.controls[config.name], config.errMsg)">{{message}}</mat-error>
+</div>
